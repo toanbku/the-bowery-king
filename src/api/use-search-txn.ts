@@ -20,7 +20,6 @@ export const useSearchTxn = (opts: Opts = {}) => {
           "Content-Type": "application/json",
         },
       })
-        .then((response) => checkStatus(response))
         .then((response) => response?.json?.())
         .then((response) => response?.data),
     {

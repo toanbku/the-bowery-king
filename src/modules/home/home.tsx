@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 export const HomePage = () => {
   const { mutateAsync: searchTxn, isLoading } = useSearchTxn({
     onError: (err) => {
-      toast.error(err);
+      toast.error(err.message);
     },
   });
   const [searchResult, setSearchResult] = useState<ISearchResult | null>();

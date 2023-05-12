@@ -1,7 +1,6 @@
 import { UseQueryOptions, useMutation } from "@tanstack/react-query";
 import { FETCH_KEY } from "./fetch-key";
 import { apiPaths } from "./api.paths";
-import { checkStatus } from "./api.utils";
 
 type Opts = UseQueryOptions<any> & {
   onSuccess?: () => void;

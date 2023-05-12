@@ -21,7 +21,7 @@ export const SearchResult = ({ data }: { data: ISearchResult }) => {
   const foundNumber = Object.keys(data).length;
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8">
+    <div className="flex flex-col gap-4 md:gap-2">
       <div>
         Found on <span className="font-bold text-green-500">{foundNumber}</span>{" "}
         chain

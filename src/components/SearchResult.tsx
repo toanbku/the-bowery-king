@@ -9,8 +9,24 @@ const mappingData = (data: EvmTxn) => {
       value: data.transactionHash,
     },
     {
+      label: "Transaction Index",
+      value: data.transactionIndex,
+    },
+    {
       label: "Block",
       value: data.blockNumber,
+    },
+    {
+      label: "Block Hash",
+      value: data.blockHash,
+    },
+    {
+      label: "Contract Address",
+      value: data.contractAddress,
+    },
+    {
+      label: "Gas Used",
+      value: data.gasUsed,
     },
   ];
 };

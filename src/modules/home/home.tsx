@@ -4,9 +4,14 @@ import { Loading } from "@/components/Loading";
 import { ISearchResult } from "@/types/search-result";
 import { useState } from "react";
 import { SearchResult } from "@/components/SearchResult";
+import { toast } from "react-hot-toast";
 
 export const HomePage = () => {
-  const { mutateAsync: searchTxn, isLoading } = useSearchTxn();
+  const { mutateAsync: searchTxn, isLoading } = useSearchTxn({
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
   const [searchResult, setSearchResult] = useState<ISearchResult | null>();
   const onSearch = async (hash: string) => {
     setSearchResult(null);

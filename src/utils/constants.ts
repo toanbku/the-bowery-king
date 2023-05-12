@@ -1,10 +1,10 @@
-export const SUPPORTED_CHAIN = {
-  "BSC Chain": "bsc",
-  "Ethereum Chain": "ethereum",
-  "Polygon Chain": "polygon",
-  "Optimism Chain": "optimism",
-  "ArbitrumNova Chain": "arbitrum",
-  "AvalanceC Chain": "avalanche-c",
-  "ArbitrumNitro Chain": "arbitrum-nitro",
-  "Fantom Chain": "fantom",
+export const SUPPORTED_CHAIN: Record<string, string> = {
+  bsc: "BSC Chain",
+  ethereum: "Ethereum Chain",
+  polygon: "Polygon Chain",
+  optimism: "Optimism Chain",
+  arbitrum: "ArbitrumNova Chain",
+  "avalanche-c": "AvalanceC Chain",
+  "arbitrum-nitro": "ArbitrumNitro Chain",
+  fantom: "Fantom Chain",
 };

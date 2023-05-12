@@ -29,6 +29,7 @@ export const SearchResult = ({ data }: { data: ISearchResult }) => {
       </div>
       <div className="flex flex-col gap-4 md:gap-6">
         {supportedChainName
+          // @ts-ignore
           .filter((chainName: string) => !!data[chainName])
           .map((chainName) => (
             <div
@@ -42,6 +43,7 @@ export const SearchResult = ({ data }: { data: ISearchResult }) => {
               <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <tbody>
+                    {/* @ts-ignore */}
                     {mappingData(data[chainName]).map((item) => (
                       <tr
                         key={item.label}

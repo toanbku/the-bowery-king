@@ -1,45 +1,19 @@
 import { useGetLatestBlock } from "@/api/use-get-latest-block";
 import { EvmBlock } from "@/types/evm-block";
-import { CHAIN_LOGO, EVM_SUPPORTED_CHAIN } from "@/utils/constants";
+import { CHAIN_DETAIL, DEFAULT_CHAIN_LOGO } from "@/utils/constants";
 import { useEffect, useState } from "react";
 import { formatDistance } from "date-fns";
 import { formatNumber, getEvmGas } from "@/utils/format-number";
 import { Loading } from "./Loading";
 import Image from "next/image";
 
-const mappingEvmData = (data: EvmBlock) => {
-  if (!data) {
-    return [];
-  }
-
-  const timestamp = Number.parseInt(data.timestamp);
-  return [
-    {
-      label: "Block Height",
-      value: Number.parseInt(data.number),
-    },
-    {
-      label: "Timestamp",
-      value: formatDistance(new Date(), new Date(timestamp * 1000), {
-        addSuffix: true,
-      }),
-    },
-    {
-      label: "Gas Used",
-      value: formatNumber(Number.parseInt(data.gasUsed)),
-    },
-    {
-      label: "Gas Limit",
-      value: formatNumber(Number.parseInt(data.gasLimit)),
-    },
-    {
-      label: "Base Fee Per Gas",
-      value: getEvmGas(Number.parseInt(data.baseFeePerGas)),
-    },
-  ];
-};
-
-export const EvmLatestBlock = ({ chainName }: { chainName: string }) => {
+export const LatestBlock = ({
+  chainName,
+  mappingData,
+}: {
+  chainName: string;
+  mappingData: (data: any) => any[];
+}) => {
   const { mutateAsync: getLatestBlock, isLoading } = useGetLatestBlock();
 
   const [response, setResponse] = useState<EvmBlock | null>(null);
@@ -61,7 +35,7 @@ export const EvmLatestBlock = ({ chainName }: { chainName: string }) => {
         {response ? (
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <tbody>
-              {mappingEvmData(response)?.map((item) => (
+              {mappingData(response)?.map((item) => (
                 <tr
                   key={item.label}
                   className="border-b dark:bg-gray-800 dark:border-gray-700"
@@ -88,13 +62,13 @@ export const EvmLatestBlock = ({ chainName }: { chainName: string }) => {
     <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h5 className="flex items-center gap-1 mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
         <Image
-          src={CHAIN_LOGO[chainName] || "/logo/unknown-logo.png"}
+          src={CHAIN_DETAIL[chainName].logo || DEFAULT_CHAIN_LOGO}
           width={26}
           height={26}
           className="rounded-full"
-          alt={EVM_SUPPORTED_CHAIN[chainName]}
+          alt={CHAIN_DETAIL[chainName].name}
         />
-        {EVM_SUPPORTED_CHAIN[chainName]}
+        {CHAIN_DETAIL[chainName].name}
       </h5>
       {renderChildren()}
     </div>

@@ -1,28 +1,58 @@
-export const EVM_SUPPORTED_CHAIN: Record<string, string> = {
-  bsc: "BSC Chain",
-  ethereum: "Ethereum Chain",
-  polygon: "Polygon Chain",
-  optimism: "Optimism Chain",
-  arbitrum: "ArbitrumNova Chain",
-  "avalanche-c": "AvalanceC Chain",
-  "arbitrum-nitro": "ArbitrumNitro Chain",
-  fantom: "Fantom Chain",
-};
+import { ChainDetail } from "@/types/chain";
 
-export const NON_EVM_SUPPORTED_CHAIN: Record<string, string> = {
-  solana: "Solana Chain",
-  near: "Near Chain",
-  klaytn: "Klaytn Chain",
-};
+export const DEFAULT_CHAIN_LOGO = "/logo/unknown-logo.png";
 
-export const CHAIN_LOGO: Record<string, string> = {
-  bsc: "/logo/binance.webp",
-  ethereum: "/logo/ethereum.webp",
-  polygon: "/logo/polygon.webp",
-  optimism: "/logo/optimism.webp",
-  arbitrum: "/logo/arbitrum.webp",
-  fantom: "/logo/fantom.webp",
-  klaytn: "/logo/klaytn.webp",
-  // solana: "Solana Chain",
-  // near: "Near Chain",
+export const CHAIN_DETAIL: Record<string, ChainDetail> = {
+  bsc: {
+    name: "BSC Chain",
+    logo: "/logo/binance.webp",
+    isEvm: true,
+  },
+  ethereum: {
+    name: "Ethereum Chain",
+    logo: "/logo/ethereum.webp",
+    isEvm: true,
+  },
+  polygon: {
+    name: "Polygon Chain",
+    logo: "/logo/polygon.webp",
+    isEvm: true,
+  },
+  optimism: {
+    name: "Optimism Chain",
+    logo: "/logo/optimism.webp",
+    isEvm: true,
+  },
+  arbitrum: {
+    name: "ArbitrumNova Chain",
+    logo: "/logo/arbitrum.webp",
+    isEvm: true,
+  },
+  "avalanche-c": {
+    name: "AvalanceC Chain",
+    isEvm: true,
+  },
+  "arbitrum-nitro": {
+    name: "ArbitrumNitro Chain",
+    isEvm: true,
+  },
+  fantom: {
+    name: "Fantom Chain",
+    logo: "/logo/fantom.webp",
+    isEvm: true,
+  },
+  // Non Evm chain
+  solana: {
+    name: "Solana Chain",
+    isEvm: false,
+  },
+  near: {
+    name: "Near Chain",
+    isEvm: false,
+  },
+  klaytn: {
+    name: "Klaytn Chain",
+    logo: "/logo/klaytn.webp",
+    isEvm: false,
+  },
 };

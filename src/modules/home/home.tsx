@@ -1,6 +1,6 @@
 import { Search } from "@/components/Search";
 import { useRouter } from "next/router";
-import { LatestBlock } from "./latest-block";
+import { LatestBlocks } from "./latest-blocks";
 
 export const HomePage = () => {
   const router = useRouter();
@@ -12,7 +12,7 @@ export const HomePage = () => {
     <div className="w-full flex flex-col gap-6 p-4">
       <Search onSearch={onSearch} />
       <hr />
-      <LatestBlock />
+      <LatestBlocks />
     </div>
   );
 };

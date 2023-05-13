@@ -1,7 +1,8 @@
 import { LatestBlock } from "@/components/LatestBlock";
 import { EvmBlock } from "@/types/evm-block";
+import { KlaytnObject, NearBlock, SolanaBlock } from "@/types/non-evm-block";
 import { CHAIN_DETAIL } from "@/utils/constants";
-import { formatNumber, getEvmGas } from "@/utils/format-number";
+import { formatNumber, getDisplayGas } from "@/utils/format-number";
 import { formatDistance } from "date-fns";
 
 export const LatestBlocks = () => {
@@ -9,7 +10,7 @@ export const LatestBlocks = () => {
     (item) => CHAIN_DETAIL[item].isEvm
   );
 
-  const mappingEvmData = (data: EvmBlock) => {
+  const mappingEvmBlockData = (data: EvmBlock) => {
     if (!data) {
       return [];
     }
@@ -36,7 +37,49 @@ export const LatestBlocks = () => {
       },
       {
         label: "Base Fee Per Gas",
-        value: getEvmGas(Number.parseInt(data.baseFeePerGas)),
+        value: getDisplayGas(Number.parseInt(data.baseFeePerGas)),
+      },
+    ];
+  };
+
+  const mappingNearBlockData = (data: NearBlock) => {
+    if (!data) {
+      return [];
+    }
+
+    return [
+      { label: "Block Height", value: data.header.height },
+      { label: "Author", value: data.author },
+      { label: "Hash", value: data.header.hash },
+    ];
+  };
+
+  const mappingSolanaBlockData = (data: SolanaBlock) => {
+    if (!data) {
+      return [];
+    }
+
+    return [
+      { label: "Block Height", value: data.BlockHeight },
+      {
+        label: "Author",
+        value: data.BlockTime
+          ? formatDistance(new Date(), new Date(data.BlockTime * 1000), {
+              addSuffix: true,
+            })
+          : "No data",
+      },
+      { label: "Hash", value: data.Blockhash },
+    ];
+  };
+
+  const mappingKlaytnBlockData = (data: KlaytnObject) => {
+    return [
+      { label: "Block Height", value: Number.parseInt(data.number) },
+      { label: "Hash", value: data.hash },
+      {
+        label: "Base Fee",
+        value: getDisplayGas(Number.parseInt(data.baseFeePerGas), 9),
       },
     ];
   };
@@ -49,9 +92,12 @@ export const LatestBlocks = () => {
           <LatestBlock
             key={chainName}
             chainName={chainName}
-            mappingData={mappingEvmData}
+            mappingData={mappingEvmBlockData}
           />
         ))}
+        <LatestBlock chainName="near" mappingData={mappingNearBlockData} />
+        <LatestBlock chainName="solana" mappingData={mappingSolanaBlockData} />
+        <LatestBlock chainName="klaytn" mappingData={mappingKlaytnBlockData} />
       </div>
     </div>
   );

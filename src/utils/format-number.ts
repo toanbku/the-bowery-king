@@ -1,9 +1,9 @@
 import numeral from "numeral";
 
-export const formatNumber = (number: Number) => {
+export const formatNumber = (number: number) => {
   return numeral(number).format("0,0");
 };
 
-export const getEvmGas = (number: Number) => {
-  return Number(Number(number) / Math.pow(10, 18)).toFixed(18);
+export const getDisplayGas = (number: number, fixedNumber: number = 18) => {
+  return Number(number / Math.pow(10, 18)).toFixed(fixedNumber);
 };

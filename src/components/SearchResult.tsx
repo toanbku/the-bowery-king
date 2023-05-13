@@ -1,7 +1,7 @@
 import { EvmTxn } from "@/types/evm-txn";
 import { ISearchResult } from "@/types/search-result";
 import { CHAIN_DETAIL } from "@/utils/constants";
-import { formatNumber, getEvmGas } from "@/utils/format-number";
+import { formatNumber, getDisplayGas } from "@/utils/format-number";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 
 const renderStatus = (status: number) => {
@@ -65,7 +65,7 @@ const mappingData = (data: EvmTxn) => {
     },
     {
       label: "Value",
-      value: getEvmGas(Number.parseInt(data.tx.value)),
+      value: getDisplayGas(Number.parseInt(data.tx.value)),
     },
   ];
 };

@@ -2,8 +2,6 @@ import { useGetLatestBlock } from "@/api/use-get-latest-block";
 import { EvmBlock } from "@/types/evm-block";
 import { CHAIN_DETAIL, DEFAULT_CHAIN_LOGO } from "@/utils/constants";
 import { useEffect, useState } from "react";
-import { formatDistance } from "date-fns";
-import { formatNumber, getEvmGas } from "@/utils/format-number";
 import { Loading } from "./Loading";
 import Image from "next/image";
 

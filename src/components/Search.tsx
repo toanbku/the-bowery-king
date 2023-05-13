@@ -13,7 +13,9 @@ export const Search = ({ onSearch }: { onSearch: (hash: string) => void }) => {
 
   return (
     <div className="rounded-md p-4 w-full flex flex-col gap-4 md:gap-6 bg-gradient-to-r ">
-      <h2 className="text-center font-semibold text-2xl">Explore Blockchain</h2>
+      <h2 className="text-center font-semibold text-2xl">
+        <span className="text-[#00C1DE]">Explore</span> Blockchain
+      </h2>
       <form className="flex items-center" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="simple-search" className="sr-only">
           Search

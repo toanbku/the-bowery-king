@@ -3,7 +3,7 @@ import { EvmBlock } from "@/types/evm-block";
 import { KlaytnObject, NearBlock, SolanaBlock } from "@/types/non-evm-block";
 import { CHAIN_DETAIL } from "@/utils/constants";
 import { formatNumber, getDisplayGas } from "@/utils/format-number";
-import { formatDistance } from "date-fns";
+// import { formatDistance } from "date-fns";
 
 export const LatestBlocks = () => {
   const evmChainName = Object.keys(CHAIN_DETAIL).filter(
@@ -15,17 +15,10 @@ export const LatestBlocks = () => {
       return [];
     }
 
-    const timestamp = Number.parseInt(data.timestamp);
     return [
       {
         label: "Block Height",
         value: Number.parseInt(data.number),
-      },
-      {
-        label: "Timestamp",
-        value: formatDistance(new Date(), new Date(timestamp * 1000), {
-          addSuffix: true,
-        }),
       },
       {
         label: "Gas Used",
@@ -61,14 +54,6 @@ export const LatestBlocks = () => {
 
     return [
       { label: "Block Height", value: data.BlockHeight },
-      {
-        label: "Author",
-        value: data.BlockTime
-          ? formatDistance(new Date(), new Date(data.BlockTime * 1000), {
-              addSuffix: true,
-            })
-          : "No data",
-      },
       { label: "Hash", value: data.Blockhash },
     ];
   };

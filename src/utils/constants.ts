@@ -14,3 +14,15 @@ export const NON_EVM_SUPPORTED_CHAIN: Record<string, string> = {
   near: "Near Chain",
   klaytn: "Klaytn Chain",
 };
+
+export const CHAIN_LOGO: Record<string, string> = {
+  bsc: "/logo/binance.webp",
+  ethereum: "/logo/ethereum.webp",
+  polygon: "/logo/polygon.webp",
+  optimism: "/logo/optimism.webp",
+  arbitrum: "/logo/arbitrum.webp",
+  fantom: "/logo/fantom.webp",
+  klaytn: "/logo/klaytn.webp",
+  // solana: "Solana Chain",
+  // near: "Near Chain",
+};

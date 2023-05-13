@@ -23,15 +23,24 @@ export const TxDetailPage = ({ tx }: { tx: string }) => {
     })();
   }, [searchTxn, tx]);
 
+  const renderChildren = () => {
+    if (isLoading) {
+      return <Loading />;
+    }
+
+    return searchResult ? (
+      <SearchResult data={searchResult} />
+    ) : (
+      <>Not found, please try again</>
+    );
+  };
+
   return (
-    <div className="w-full flex flex-col gap-6">
-      {isLoading ? (
-        <Loading />
-      ) : searchResult ? (
-        <SearchResult data={searchResult} />
-      ) : (
-        <>Not found</>
-      )}
+    <div className="w-full flex flex-col gap-6 p-4">
+      <h1 className="break-all">
+        Results for <span className="font-bold">{tx}</span>
+      </h1>
+      {renderChildren()}
     </div>
   );
 };

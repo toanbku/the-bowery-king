@@ -1,10 +1,11 @@
 import { useGetLatestBlock } from "@/api/use-get-latest-block";
 import { EvmBlock } from "@/types/evm-block";
-import { EVM_SUPPORTED_CHAIN } from "@/utils/constants";
+import { CHAIN_LOGO, EVM_SUPPORTED_CHAIN } from "@/utils/constants";
 import { useEffect, useState } from "react";
 import { formatDistance } from "date-fns";
 import { formatNumber, getEvmGas } from "@/utils/format-number";
 import { Loading } from "./Loading";
+import Image from "next/image";
 
 const mappingEvmData = (data: EvmBlock) => {
   if (!data) {
@@ -85,7 +86,14 @@ export const EvmLatestBlock = ({ chainName }: { chainName: string }) => {
 
   return (
     <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <h5 className="flex items-center gap-1 mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <Image
+          src={CHAIN_LOGO[chainName] || "/logo/unknown-logo.png"}
+          width={26}
+          height={26}
+          className="rounded-full"
+          alt={EVM_SUPPORTED_CHAIN[chainName]}
+        />
         {EVM_SUPPORTED_CHAIN[chainName]}
       </h5>
       {renderChildren()}

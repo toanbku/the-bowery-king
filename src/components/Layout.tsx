@@ -2,7 +2,7 @@ import { Navbar } from "./Navbar";
 
 export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <div className="w-full h-full min-h-screen p-4">
+    <div className="w-full h-full min-h-screen">
       {/* header */}
       <Navbar />
 

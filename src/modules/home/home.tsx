@@ -9,8 +9,9 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-6 p-4">
       <Search onSearch={onSearch} />
+      <hr />
       <LatestBlock />
     </div>
   );

@@ -1,4 +1,32 @@
 export interface EvmTxn {
+  receipt: Receipt;
+  tx: Tx;
+  extra: Extra;
+}
+
+interface Extra {
+  blockNumber: string;
+  blockHash: string;
+  from: string;
+}
+
+interface Tx {
+  type: string;
+  nonce: string;
+  gasPrice: string;
+  maxPriorityFeePerGas?: any;
+  maxFeePerGas?: any;
+  gas: string;
+  value: string;
+  input: string;
+  v: string;
+  r: string;
+  s: string;
+  to: string;
+  hash: string;
+}
+
+interface Receipt {
   root: string;
   status: string;
   cumulativeGasUsed: string;
@@ -12,7 +40,7 @@ export interface EvmTxn {
   transactionIndex: string;
 }
 
-export interface Log {
+interface Log {
   address: string;
   topics: string[];
   data: string;

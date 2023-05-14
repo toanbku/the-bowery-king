@@ -15,7 +15,7 @@ export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
 
         {/* container */}
         <main
-          className={`md:pt-20 max-w-screen-xl mx-auto flex flex-col gap-10 items-center justify-between `}
+          className={`md:pt-10 max-w-screen-xl mx-auto flex flex-col gap-10 items-center justify-between `}
         >
           {children}
         </main>

@@ -7,8 +7,8 @@ export const Navbar = () => {
   const router = useRouter();
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="z-50 bg-white sticky top-0 border-gray-200 shadow">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-4">
         <Link href="/" className="flex items-center">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
             The Bowery King

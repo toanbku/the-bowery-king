@@ -63,9 +63,11 @@ const mappingEvmData = (chainName: string, data: EvmTxn) => {
     },
     {
       label: "Gas Price",
-      value: `${getDisplayGas(Number.parseInt(data.tx.maxFeePerGas))} ${
+      value: `${getDisplayGwei(
+        Number.parseInt(data.tx.maxFeePerGas)
+      )} Gwei (${getDisplayGas(Number.parseInt(data.tx.maxFeePerGas))} ${
         CHAIN_DETAIL[chainName].nativeCoin ?? ""
-      } (${getDisplayGwei(Number.parseInt(data.tx.maxFeePerGas))} Gwei)`,
+      })`,
     },
     {
       label: "Gas Limit & Usage by Txn",

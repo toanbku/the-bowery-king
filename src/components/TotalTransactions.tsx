@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import { useGetTotalTransactions } from "@/api/use-get-total-transactions";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import classNames from "classnames";
+import { formatNumber } from "@/utils/function";
 
 export const TotalTransactions = ({ chainNames }: { chainNames: string[] }) => {
   const {
@@ -57,7 +58,9 @@ export const TotalTransactions = ({ chainNames }: { chainNames: string[] }) => {
                         {CHAIN_DETAIL[chainName].name}
                       </div>
                     </th>
-                    <td className="px-6 py-4">{response[idx]?.data}</td>
+                    <td className="px-6 py-4">
+                      {formatNumber(response[idx]?.data ?? 0)}
+                    </td>
                   </tr>
                 );
               })}

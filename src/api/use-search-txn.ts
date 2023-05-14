@@ -1,18 +1,19 @@
-import { UseQueryOptions, useMutation } from "@tanstack/react-query";
+import { UseQueryOptions, useMutation, useQuery } from "@tanstack/react-query";
 import { FETCH_KEY } from "./fetch-key";
 import { apiPaths } from "./api.paths";
 
 type Opts = UseQueryOptions<any> & {
   onSuccess?: () => void;
   onError?: (err: any) => void;
+  txn: string;
 };
 
-export const useSearchTxn = (opts: Opts = {}) => {
-  const { onSuccess, onError } = opts;
+export const useSearchTxn = (opts: Opts) => {
+  const { onSuccess, onError, txn } = opts;
 
-  return useMutation(
-    [FETCH_KEY.search],
-    (txn: string) =>
+  return useQuery(
+    [FETCH_KEY.search, txn],
+    async () =>
       fetch(`${apiPaths.searchTxn}/${txn}`, {
         method: "GET",
         headers: {

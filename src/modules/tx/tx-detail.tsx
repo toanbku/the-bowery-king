@@ -1,27 +1,15 @@
 import { useSearchTxn } from "@/api/use-search-txn";
 import { Loading } from "@/components/Loading";
 import { TxnSearchResult } from "@/components/TxnSearchResult";
-import { ISearchResult } from "@/types/search-result";
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export const TxDetailPage = ({ tx }: { tx: string }) => {
-  const { mutateAsync: searchTxn, isLoading } = useSearchTxn({
+export const TxDetailPage = ({ txn }: { txn: string }) => {
+  const { data: searchResult, isLoading } = useSearchTxn({
     onError: (err) => {
       toast.error(err.message);
     },
+    txn,
   });
-
-  const [searchResult, setSearchResult] = useState<ISearchResult | null>();
-
-  useEffect(() => {
-    (async () => {
-      if (tx) {
-        const response: ISearchResult = await searchTxn(tx);
-        setSearchResult(response);
-      }
-    })();
-  }, [searchTxn, tx]);
 
   const renderChildren = () => {
     if (isLoading) {
@@ -40,7 +28,7 @@ export const TxDetailPage = ({ tx }: { tx: string }) => {
   return (
     <div className="w-full flex flex-col gap-6 p-4">
       <h1 className="break-all">
-        Results for <span className="font-bold">{tx}</span>
+        Results for <span className="font-bold">{txn}</span>
       </h1>
       {renderChildren()}
     </div>

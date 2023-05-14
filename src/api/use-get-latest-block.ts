@@ -1,19 +1,20 @@
-import { UseQueryOptions, useMutation } from "@tanstack/react-query";
+import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { FETCH_KEY } from "./fetch-key";
 import { apiPaths } from "./api.paths";
 
 type Opts = UseQueryOptions<any> & {
   onSuccess?: () => void;
   onError?: (err: any) => void;
+  chainName: string;
 };
 
-export const useGetLatestBlock = (opts: Opts = {}) => {
-  const { onSuccess, onError } = opts;
+export const useGetLatestBlock = (opts: Opts) => {
+  const { onSuccess, onError, chainName } = opts;
 
-  return useMutation(
-    [FETCH_KEY.latestBlock],
-    (chain: string) =>
-      fetch(`${apiPaths.latestBlock}/${chain}`, {
+  return useQuery(
+    [FETCH_KEY.latestBlock, chainName],
+    async () =>
+      fetch(`${apiPaths.latestBlock}/${chainName}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -32,6 +33,7 @@ export const useGetLatestBlock = (opts: Opts = {}) => {
           onError(error);
         }
       },
+      refetchInterval: 1000 * 60, // 1 minute
     }
   );
 };

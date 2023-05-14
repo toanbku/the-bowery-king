@@ -1,18 +1,19 @@
-import { UseQueryOptions, useMutation } from "@tanstack/react-query";
+import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { FETCH_KEY } from "./fetch-key";
 import { apiPaths } from "./api.paths";
 
 type Opts = UseQueryOptions<any> & {
   onSuccess?: () => void;
   onError?: (err: any) => void;
+  chain: string;
 };
 
-export const useGetTotalTransaction = (opts: Opts = {}) => {
-  const { onSuccess, onError } = opts;
+export const useGetTotalTransaction = (opts: Opts) => {
+  const { onSuccess, onError, chain } = opts;
 
-  return useMutation(
+  return useQuery(
     [FETCH_KEY.latestBlock],
-    (chain: string) =>
+    async () =>
       fetch(`${apiPaths.totalTxn}/${chain}`, {
         method: "GET",
         headers: {

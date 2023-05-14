@@ -11,5 +11,5 @@ export default function TxnDetail() {
 
   const { tx } = router.query;
 
-  return <Layout>{tx && <TxDetailPage tx={String(tx)} />}</Layout>;
+  return <Layout>{tx && <TxDetailPage txn={String(tx)} />}</Layout>;
 }

@@ -12,16 +12,7 @@ export const LatestBlock = ({
   chainName: string;
   mappingData: (data: any) => any[];
 }) => {
-  const { mutateAsync: getLatestBlock, isLoading } = useGetLatestBlock();
-
-  const [response, setResponse] = useState<EvmBlock | null>(null);
-
-  useEffect(() => {
-    (async () => {
-      const response = await getLatestBlock(chainName);
-      setResponse(response);
-    })();
-  }, [chainName, getLatestBlock]);
+  const { data: response, isLoading } = useGetLatestBlock({ chainName });
 
   const renderChildren = () => {
     if (isLoading) {

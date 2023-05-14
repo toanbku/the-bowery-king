@@ -5,37 +5,38 @@ export const DEFAULT_CHAIN_LOGO = "/logo/unknown-logo.png";
 export const CHAIN_DETAIL: Record<string, ChainDetail> = {
   bsc: {
     name: "BSC Chain",
-    logo: "/logo/binance.webp",
+    logo: "/logo/binance.svg",
     isEvm: true,
     nativeCoin: "BNB",
   },
   ethereum: {
     name: "Ethereum Chain",
-    logo: "/logo/ethereum.webp",
+    logo: "/logo/ethereum.svg",
     isEvm: true,
     nativeCoin: "ETH",
   },
   polygon: {
     name: "Polygon Chain",
-    logo: "/logo/polygon.webp",
+    logo: "/logo/polygon.svg",
     isEvm: true,
     nativeCoin: "MATIC",
   },
   optimism: {
     name: "Optimism Chain",
-    logo: "/logo/optimism.webp",
+    logo: "/logo/optimism.svg",
     isEvm: true,
     nativeCoin: "Ether",
   },
   arbitrum: {
     name: "ArbitrumNova Chain",
-    logo: "/logo/arbitrum.webp",
+    logo: "/logo/arbitrum.svg",
     isEvm: true,
     nativeCoin: "ETH",
   },
-  "avalanche-c": {
+  avalanche: {
     name: "AvalanceC Chain",
     isEvm: true,
+    logo: "/logo/avalanche.svg",
   },
   "arbitrum-nitro": {
     name: "ArbitrumNitro Chain",
@@ -43,7 +44,7 @@ export const CHAIN_DETAIL: Record<string, ChainDetail> = {
   },
   fantom: {
     name: "Fantom Chain",
-    logo: "/logo/fantom.webp",
+    logo: "/logo/fantom.svg",
     isEvm: true,
     nativeCoin: "FTM",
   },
@@ -52,14 +53,16 @@ export const CHAIN_DETAIL: Record<string, ChainDetail> = {
     name: "Solana Chain",
     isEvm: false,
     nativeCoin: "SOL",
+    logo: "/logo/solana.svg",
   },
   near: {
     name: "Near Chain",
     isEvm: false,
+    logo: "/logo/near.svg",
   },
   klaytn: {
     name: "Klaytn Chain",
-    logo: "/logo/klaytn.webp",
+    logo: "/logo/klaytn.svg",
     isEvm: false,
     nativeCoin: "KLAY",
   },

@@ -25,11 +25,11 @@ export const LatestBlock = ({
 
   const renderChildren = () => {
     if (isLoading) {
-      return <Loading />;
+      return <Loading numberLine={5} />;
     }
 
     return (
-      <div className="relative overflow-x-auto">
+      <div className="relative overflow-x-auto min-h-[180px]">
         {response ? (
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <tbody>

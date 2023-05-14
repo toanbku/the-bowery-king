@@ -25,7 +25,7 @@ export const TxDetailPage = ({ tx }: { tx: string }) => {
 
   const renderChildren = () => {
     if (isLoading) {
-      return <Loading />;
+      return <Loading numberLine={6} />;
     }
 
     return searchResult ? (

@@ -61,5 +61,6 @@ export const CHAIN_DETAIL: Record<string, ChainDetail> = {
     name: "Klaytn Chain",
     logo: "/logo/klaytn.webp",
     isEvm: false,
+    nativeCoin: "KLAY",
   },
 };

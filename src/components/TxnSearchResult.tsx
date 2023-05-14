@@ -49,7 +49,7 @@ const mappingEvmData = (chainName: string, data: EvmTxn) => {
     },
     {
       label: "From",
-      value: data.extra.from,
+      value: data.tx.from,
     },
     {
       label: "To",
@@ -64,8 +64,8 @@ const mappingEvmData = (chainName: string, data: EvmTxn) => {
     {
       label: "Gas Price",
       value: `${getDisplayGwei(
-        Number.parseInt(data.tx.maxFeePerGas)
-      )} Gwei (${getDisplayGas(Number.parseInt(data.tx.maxFeePerGas))} ${
+        Number.parseInt(data.tx.gasPrice)
+      )} Gwei (${getDisplayGas(Number.parseInt(data.tx.gasPrice))} ${
         CHAIN_DETAIL[chainName].nativeCoin ?? ""
       })`,
     },
@@ -119,19 +119,6 @@ const mappingNearData = (chainName: string, data: NearTxn) => {
   ];
 };
 
-const mappingKlaytnData = (chainName: string, data: NearTxn) => {
-  return [
-    {
-      label: "Receipt Id",
-      value: data.info.receipt_id,
-    },
-    {
-      label: "Name",
-      value: data.name,
-    },
-  ];
-};
-
 export const TxnSearchResult = ({ data }: { data: ISearchResult }) => {
   const foundNumber = Object.keys(data).length;
 
@@ -142,6 +129,11 @@ export const TxnSearchResult = ({ data }: { data: ISearchResult }) => {
 
     if (chainName === "near") {
       return mappingNearData(chainName, data);
+    }
+
+    // klaytn is not evm but we can reuse the mapping evm func
+    if (chainName === "klaytn") {
+      return mappingEvmData(chainName, data);
     }
 
     return mappingEvmData(chainName, data);

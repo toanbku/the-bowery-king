@@ -1,53 +1,51 @@
 export interface EvmTxn {
   receipt: Receipt;
   tx: Tx;
-  extra: Extra;
-}
-
-interface Extra {
-  blockNumber: string;
-  blockHash: string;
-  from: string;
 }
 
 interface Tx {
-  type: string;
-  nonce: string;
-  gasPrice: string;
-  maxPriorityFeePerGas?: any;
-  maxFeePerGas?: any;
+  blockHash: string;
+  blockNumber: string;
+  from: string;
   gas: string;
-  value: string;
+  gasPrice: string;
+  hash: string;
   input: string;
-  v: string;
+  nonce: string;
   r: string;
   s: string;
   to: string;
-  hash: string;
+  transactionIndex: string;
+  type: string;
+  v: string;
+  value: string;
 }
 
 interface Receipt {
-  root: string;
-  status: string;
-  cumulativeGasUsed: string;
-  logsBloom: string;
-  logs: Log[];
-  transactionHash: string;
-  contractAddress: string;
-  gasUsed: string;
   blockHash: string;
   blockNumber: string;
+  contractAddress?: any;
+  cumulativeGasUsed: string;
+  effectiveGasPrice: string;
+  from: string;
+  gasUsed: string;
+  logs: Log[];
+  logsBloom: string;
+  status: string;
+  to: string;
+  transactionHash: string;
   transactionIndex: string;
+  type: string;
 }
 
 interface Log {
   address: string;
-  topics: string[];
-  data: string;
-  blockNumber: string;
-  transactionHash: string;
-  transactionIndex: string;
   blockHash: string;
+  blockNumber: string;
+  data: string;
   logIndex: string;
   removed: boolean;
+  topics: string[];
+  transactionHash: string;
+  transactionIndex: string;
 }

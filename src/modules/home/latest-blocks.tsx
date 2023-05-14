@@ -64,7 +64,7 @@ export const LatestBlocks = () => {
       { label: "Hash", value: data.hash },
       {
         label: "Base Fee",
-        value: getDisplayGas(Number.parseInt(data.baseFeePerGas), 9),
+        value: getDisplayGas(Number.parseInt(data.baseFeePerGas), 18),
       },
     ];
   };

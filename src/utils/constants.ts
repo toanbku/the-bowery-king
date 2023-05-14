@@ -7,26 +7,31 @@ export const CHAIN_DETAIL: Record<string, ChainDetail> = {
     name: "BSC Chain",
     logo: "/logo/binance.webp",
     isEvm: true,
+    nativeCoin: "BNB",
   },
   ethereum: {
     name: "Ethereum Chain",
     logo: "/logo/ethereum.webp",
     isEvm: true,
+    nativeCoin: "ETH",
   },
   polygon: {
     name: "Polygon Chain",
     logo: "/logo/polygon.webp",
     isEvm: true,
+    nativeCoin: "MATIC",
   },
   optimism: {
     name: "Optimism Chain",
     logo: "/logo/optimism.webp",
     isEvm: true,
+    nativeCoin: "Ether",
   },
   arbitrum: {
     name: "ArbitrumNova Chain",
     logo: "/logo/arbitrum.webp",
     isEvm: true,
+    nativeCoin: "ETH",
   },
   "avalanche-c": {
     name: "AvalanceC Chain",
@@ -40,11 +45,13 @@ export const CHAIN_DETAIL: Record<string, ChainDetail> = {
     name: "Fantom Chain",
     logo: "/logo/fantom.webp",
     isEvm: true,
+    nativeCoin: "FTM",
   },
   // Non Evm chain
   solana: {
     name: "Solana Chain",
     isEvm: false,
+    nativeCoin: "SOL",
   },
   near: {
     name: "Near Chain",

@@ -2,7 +2,12 @@ import { EvmTxn } from "@/types/evm-txn";
 import { SolanaTxn, NearTxn } from "@/types/non-evm-txn";
 import { ISearchResult } from "@/types/search-result";
 import { CHAIN_DETAIL, DEFAULT_CHAIN_LOGO } from "@/utils/constants";
-import { formatNumber, getDisplayGas } from "@/utils/format-number";
+import {
+  formatNumber,
+  getDisplayGas,
+  getDisplayGwei,
+  getDisplaySolGas,
+} from "@/utils/format-number";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
@@ -24,7 +29,7 @@ const renderStatus = (status: number) => {
   );
 };
 
-const mappingEvmData = (data: EvmTxn) => {
+const mappingEvmData = (chainName: string, data: EvmTxn) => {
   return [
     {
       label: "Transaction Hash",
@@ -51,6 +56,18 @@ const mappingEvmData = (data: EvmTxn) => {
       value: data.tx.to,
     },
     {
+      label: "Value",
+      value: `${getDisplayGas(Number.parseInt(data.tx.value))} ${
+        CHAIN_DETAIL[chainName].nativeCoin ?? ""
+      }`,
+    },
+    {
+      label: "Gas Price",
+      value: `${getDisplayGas(Number.parseInt(data.tx.maxFeePerGas))} ${
+        CHAIN_DETAIL[chainName].nativeCoin ?? ""
+      } (${getDisplayGwei(Number.parseInt(data.tx.maxFeePerGas))} Gwei)`,
+    },
+    {
       label: "Gas Limit & Usage by Txn",
       value: (
         <div>
@@ -65,14 +82,10 @@ const mappingEvmData = (data: EvmTxn) => {
         </div>
       ),
     },
-    {
-      label: "Value",
-      value: getDisplayGas(Number.parseInt(data.tx.value)),
-    },
   ];
 };
 
-const mappingSolData = (data: SolanaTxn) => {
+const mappingSolData = (chainName: string, data: SolanaTxn) => {
   return [
     {
       label: "Block",
@@ -80,7 +93,9 @@ const mappingSolData = (data: SolanaTxn) => {
     },
     {
       label: "Fee",
-      value: data.Meta.Fee,
+      value: `${getDisplaySolGas(data.Meta.Fee)} ${
+        CHAIN_DETAIL[chainName].nativeCoin
+      }`,
     },
     {
       label: "Transaction Version",
@@ -89,7 +104,7 @@ const mappingSolData = (data: SolanaTxn) => {
   ];
 };
 
-const mappingNearData = (data: NearTxn) => {
+const mappingNearData = (chainName: string, data: NearTxn) => {
   return [
     {
       label: "Receipt Id",
@@ -102,7 +117,7 @@ const mappingNearData = (data: NearTxn) => {
   ];
 };
 
-const mappingKlaytnData = (data: NearTxn) => {
+const mappingKlaytnData = (chainName: string, data: NearTxn) => {
   return [
     {
       label: "Receipt Id",
@@ -120,14 +135,14 @@ export const TxnSearchResult = ({ data }: { data: ISearchResult }) => {
 
   const mappingData = (chainName: string, data: any) => {
     if (chainName === "solana") {
-      return mappingSolData(data);
+      return mappingSolData(chainName, data);
     }
 
     if (chainName === "near") {
-      return mappingNearData(data);
+      return mappingNearData(chainName, data);
     }
 
-    return mappingEvmData(data);
+    return mappingEvmData(chainName, data);
   };
 
   return (

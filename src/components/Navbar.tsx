@@ -7,7 +7,12 @@ export const Navbar = () => {
   const router = useRouter();
 
   const handleScrollTo = (id: string) => {
-    router.push(`/#${id}`);
+    router.push(`/`, undefined, { scroll: false }).then(() =>
+      window.scrollTo({
+        top: (document.getElementById(id)?.offsetTop || 0) - 65,
+        behavior: "smooth",
+      })
+    );
   };
 
   return (

@@ -31,7 +31,9 @@ export const TxDetailPage = ({ tx }: { tx: string }) => {
     return searchResult ? (
       <TxnSearchResult data={searchResult} />
     ) : (
-      <>Not found, please try again</>
+      <span className="text-red-500">
+        Not found, please try with another transaction hash
+      </span>
     );
   };
 

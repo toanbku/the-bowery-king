@@ -1,9 +1,10 @@
 import { useGetLatestBlock } from "@/api/use-get-latest-block";
-import { EvmBlock } from "@/types/evm-block";
 import { CHAIN_DETAIL, DEFAULT_CHAIN_LOGO } from "@/utils/constants";
-import { useEffect, useState } from "react";
 import { Loading } from "./Loading";
 import Image from "next/image";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import classNames from "classnames";
+import { toast } from "react-hot-toast";
 
 export const LatestBlock = ({
   chainName,
@@ -12,7 +13,12 @@ export const LatestBlock = ({
   chainName: string;
   mappingData: (data: any) => any[];
 }) => {
-  const { data: response, isLoading } = useGetLatestBlock({ chainName });
+  const {
+    data: response,
+    isLoading,
+    refetch,
+    isRefetching,
+  } = useGetLatestBlock({ chainName });
 
   const renderChildren = () => {
     if (isLoading) {
@@ -51,19 +57,36 @@ export const LatestBlock = ({
     );
   };
 
+  const handleRefetching = async () => {
+    await refetch();
+    toast.success("Success!");
+  };
+
   return (
     <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <h5 className="flex items-center gap-1 md:gap-[6px] mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-        <div className="relative w-[26px] h-[26px]">
-          <Image
-            fill
-            src={CHAIN_DETAIL[chainName].logo || DEFAULT_CHAIN_LOGO}
-            className="object-contain"
-            alt={CHAIN_DETAIL[chainName].name}
-          />
+      <h5 className="flex justify-between items-center mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <div className="flex items-center gap-1 md:gap-[6px] ">
+          <div className="relative w-[26px] h-[26px]">
+            <Image
+              fill
+              src={CHAIN_DETAIL[chainName].logo || DEFAULT_CHAIN_LOGO}
+              className="object-contain"
+              alt={CHAIN_DETAIL[chainName].name}
+            />
+          </div>
+          {CHAIN_DETAIL[chainName].name}
         </div>
-        {CHAIN_DETAIL[chainName].name}
+        <div>
+          <button onClick={handleRefetching}>
+            <ArrowPathIcon
+              className={classNames({ "animate-spin": isRefetching })}
+              width={20}
+              height={20}
+            />
+          </button>
+        </div>
       </h5>
+
       {renderChildren()}
     </div>
   );

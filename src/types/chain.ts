@@ -3,4 +3,5 @@ export type ChainDetail = {
   logo?: string;
   isEvm: boolean;
   nativeCoin?: string;
+  enableTotalTxn: boolean;
 };

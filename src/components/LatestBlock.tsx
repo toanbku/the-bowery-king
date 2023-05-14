@@ -52,7 +52,9 @@ export const LatestBlock = ({
             </tbody>
           </table>
         ) : (
-          <div>Cannot get the latest block on this chain</div>
+          <div className="text-red-500">
+            Cannot get the latest block on this chain
+          </div>
         )}
       </div>
     );
@@ -65,8 +67,6 @@ export const LatestBlock = ({
           <Image
             fill
             src={CHAIN_DETAIL[chainName].logo || DEFAULT_CHAIN_LOGO}
-            // width={26}
-            // height={26}
             className="object-contain"
             alt={CHAIN_DETAIL[chainName].name}
           />

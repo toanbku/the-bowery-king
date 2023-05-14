@@ -23,7 +23,7 @@ const renderStatus = (status: number) => {
 
   return (
     <div className="flex gap-[2px] md:gap-1 items-center">
-      <XCircleIcon className="w-4 h-4 text-red-400" />
+      <XCircleIcon className="w-4 h-4 text-red-500" />
       Failed
     </div>
   );

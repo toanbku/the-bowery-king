@@ -38,13 +38,22 @@ export const FNavbar = () => {
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse>
-        <Navbar.Link onClick={() => handleScrollTo("search")}>
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => handleScrollTo("search")}
+        >
           Search
         </Navbar.Link>
-        <Navbar.Link onClick={() => handleScrollTo("latest-blocks")}>
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => handleScrollTo("latest-blocks")}
+        >
           Latest Blocks
         </Navbar.Link>
-        <Navbar.Link onClick={() => handleScrollTo("total-transactions")}>
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => handleScrollTo("total-transactions")}
+        >
           Total Transactions
         </Navbar.Link>
         <Navbar.Link href="/about">About</Navbar.Link>

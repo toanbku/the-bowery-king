@@ -1,6 +1,6 @@
 import { useSearchTxn } from "@/api/use-search-txn";
 import { Loading } from "@/components/Loading";
-import { SearchResult } from "@/components/SearchResult";
+import { TxnSearchResult } from "@/components/TxnSearchResult";
 import { ISearchResult } from "@/types/search-result";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -29,7 +29,7 @@ export const TxDetailPage = ({ tx }: { tx: string }) => {
     }
 
     return searchResult ? (
-      <SearchResult data={searchResult} />
+      <TxnSearchResult data={searchResult} />
     ) : (
       <>Not found, please try again</>
     );

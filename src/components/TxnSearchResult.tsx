@@ -1,8 +1,10 @@
 import { EvmTxn } from "@/types/evm-txn";
+import { SolanaTxn, NearTxn } from "@/types/non-evm-txn";
 import { ISearchResult } from "@/types/search-result";
-import { CHAIN_DETAIL } from "@/utils/constants";
+import { CHAIN_DETAIL, DEFAULT_CHAIN_LOGO } from "@/utils/constants";
 import { formatNumber, getDisplayGas } from "@/utils/format-number";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 const renderStatus = (status: number) => {
   if (status === 1) {
@@ -22,7 +24,7 @@ const renderStatus = (status: number) => {
   );
 };
 
-const mappingData = (data: EvmTxn) => {
+const mappingEvmData = (data: EvmTxn) => {
   return [
     {
       label: "Transaction Hash",
@@ -70,12 +72,63 @@ const mappingData = (data: EvmTxn) => {
   ];
 };
 
-export const SearchResult = ({ data }: { data: ISearchResult }) => {
-  const evmSupportedChainName = Object.keys(CHAIN_DETAIL).filter(
-    (item) => CHAIN_DETAIL[item].isEvm
-  );
+const mappingSolData = (data: SolanaTxn) => {
+  return [
+    {
+      label: "Block",
+      value: data.Slot,
+    },
+    {
+      label: "Fee",
+      value: data.Meta.Fee,
+    },
+    {
+      label: "Transaction Version",
+      value: data.Transaction.Message.Version,
+    },
+  ];
+};
 
+const mappingNearData = (data: NearTxn) => {
+  return [
+    {
+      label: "Receipt Id",
+      value: data.info.receipt_id,
+    },
+    {
+      label: "Name",
+      value: data.name,
+    },
+  ];
+};
+
+const mappingKlaytnData = (data: NearTxn) => {
+  return [
+    {
+      label: "Receipt Id",
+      value: data.info.receipt_id,
+    },
+    {
+      label: "Name",
+      value: data.name,
+    },
+  ];
+};
+
+export const TxnSearchResult = ({ data }: { data: ISearchResult }) => {
   const foundNumber = Object.keys(data).length;
+
+  const mappingData = (chainName: string, data: any) => {
+    if (chainName === "solana") {
+      return mappingSolData(data);
+    }
+
+    if (chainName === "near") {
+      return mappingNearData(data);
+    }
+
+    return mappingEvmData(data);
+  };
 
   return (
     <div className="flex flex-col gap-4 md:gap-2">
@@ -85,7 +138,7 @@ export const SearchResult = ({ data }: { data: ISearchResult }) => {
         {foundNumber > 1 ? "s" : ""}
       </div>
       <div className="flex flex-col gap-4 md:gap-6">
-        {evmSupportedChainName
+        {Object.keys(CHAIN_DETAIL)
           // @ts-ignore
           .filter((chainName: string) => !!data[chainName])
           .map((chainName) => (
@@ -93,7 +146,14 @@ export const SearchResult = ({ data }: { data: ISearchResult }) => {
               key={chainName}
               className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
             >
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h5 className="flex items-center gap-1 mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <Image
+                  src={CHAIN_DETAIL[chainName].logo || DEFAULT_CHAIN_LOGO}
+                  width={26}
+                  height={26}
+                  className="rounded-full"
+                  alt={CHAIN_DETAIL[chainName].name}
+                />
                 {CHAIN_DETAIL[chainName].name}
               </h5>
 
@@ -101,7 +161,7 @@ export const SearchResult = ({ data }: { data: ISearchResult }) => {
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <tbody>
                     {/* @ts-ignore */}
-                    {mappingData(data[chainName]).map((item) => (
+                    {mappingData(chainName, data[chainName]).map((item) => (
                       <tr
                         key={item.label}
                         className="border-b dark:bg-gray-800 dark:border-gray-700"

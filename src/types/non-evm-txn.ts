@@ -41,3 +41,12 @@ interface Meta {
   LogMessages: string[];
   InnerInstructions: any[];
 }
+
+export interface NearTxn {
+  info: Info;
+  name: string;
+}
+
+interface Info {
+  receipt_id: string;
+}

@@ -57,6 +57,14 @@ export const FNavbar = () => {
           Total Transactions
         </Navbar.Link>
         <Navbar.Link href="/about">About</Navbar.Link>
+        <Navbar.Link
+          className="flex flex-row items-center gap-1"
+          target="_blank"
+          href="https://github.com/toanbku/the-bowery-king"
+        >
+          Github
+          <ArrowTopRightOnSquareIcon width={16} height={16} />
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );

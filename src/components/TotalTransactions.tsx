@@ -81,7 +81,10 @@ export const TotalTransactions = ({ chainNames }: { chainNames: string[] }) => {
   };
 
   return (
-    <div className="rounded-md p-4 w-full flex flex-col gap-4 md:gap-6">
+    <div
+      id="total-transactions"
+      className="rounded-md p-4 w-full flex flex-col gap-4 md:gap-6"
+    >
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-semibold">
           Total Transactions in 24h
@@ -99,10 +102,7 @@ export const TotalTransactions = ({ chainNames }: { chainNames: string[] }) => {
           </button>
         </div>
       </div>
-      <div
-        id="total-transactions"
-        className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-      >
+      <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         {renderChildren()}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Navbar } from "./Navbar";
+import { FNavbar } from "./Navbar";
 import Link from "next/link";
 
 export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -12,7 +12,7 @@ export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
       </Head>
       <div className="w-full h-full min-h-[calc(100vh-80px)]">
         {/* header */}
-        <Navbar />
+        <FNavbar />
 
         {/* container */}
         <main

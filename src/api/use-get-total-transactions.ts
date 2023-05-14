@@ -43,6 +43,8 @@ export const useGetTotalTransactions = (opts: Opts) => {
           onError(error);
         }
       },
+      refetchInterval: 10 * 1000 * 60, // 10 minutes
+      refetchOnWindowFocus: false,
     }
   );
 };

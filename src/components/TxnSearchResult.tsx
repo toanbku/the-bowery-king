@@ -7,7 +7,7 @@ import {
   getDisplayGas,
   getDisplayGwei,
   getDisplaySolGas,
-} from "@/utils/format-number";
+} from "@/utils/function";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 

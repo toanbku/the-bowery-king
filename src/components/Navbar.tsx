@@ -6,6 +6,10 @@ import { useRouter } from "next/router";
 export const Navbar = () => {
   const router = useRouter();
 
+  const handleScrollTo = (id: string) => {
+    router.push(`/#${id}`);
+  };
+
   return (
     <nav className="z-50 bg-white sticky top-0 border-gray-200 shadow">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-4">
@@ -38,6 +42,30 @@ export const Navbar = () => {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+              <div
+                className="cursor-pointer"
+                onClick={() => handleScrollTo("search")}
+              >
+                Search
+              </div>
+            </li>
+            <li>
+              <div
+                className="cursor-pointer"
+                onClick={() => handleScrollTo("latest-blocks")}
+              >
+                Latest Block
+              </div>
+            </li>
+            <li>
+              <div
+                className="cursor-pointer"
+                onClick={() => handleScrollTo("total-transactions")}
+              >
+                Total Transactions
+              </div>
+            </li>
             <li>
               <Link
                 href="/about"

@@ -2,7 +2,7 @@ import { LatestBlock } from "@/components/LatestBlock";
 import { EvmBlock } from "@/types/evm-block";
 import { KlaytnObject, NearBlock, SolanaBlock } from "@/types/non-evm-block";
 import { CHAIN_DETAIL } from "@/utils/constants";
-import { formatNumber, getDisplayGas } from "@/utils/format-number";
+import { formatNumber, getDisplayGas } from "@/utils/function";
 // import { formatDistance } from "date-fns";
 
 export const LatestBlocks = () => {
@@ -70,7 +70,10 @@ export const LatestBlocks = () => {
   };
 
   return (
-    <div className="rounded-md p-4 w-full flex flex-col gap-4 md:gap-6 bg-gradient-to-r ">
+    <div
+      id="latest-blocks"
+      className="rounded-md p-4 w-full flex flex-col gap-4 md:gap-6"
+    >
       <h2 className="text-2xl font-semibold">
         Latest Block
         <span className="ml-1 italic font-normal text-sm">

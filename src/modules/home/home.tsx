@@ -1,6 +1,7 @@
 import { Search } from "@/components/Search";
 import { useRouter } from "next/router";
 import { LatestBlocks } from "./latest-blocks";
+import { TotalTransactions24h } from "./total-transactions-24h";
 
 export const HomePage = () => {
   const router = useRouter();
@@ -13,6 +14,7 @@ export const HomePage = () => {
       <Search onSearch={onSearch} />
       <hr />
       <LatestBlocks />
+      <TotalTransactions24h />
     </div>
   );
 };

@@ -12,7 +12,10 @@ export const Search = ({ onSearch }: { onSearch: (hash: string) => void }) => {
   };
 
   return (
-    <div className="rounded-md p-4 w-full flex flex-col gap-4 md:gap-6 bg-gradient-to-r ">
+    <div
+      id="search"
+      className="md:pt-10 rounded-md p-4 w-full flex flex-col gap-4 md:gap-6"
+    >
       <h2 className="text-center font-semibold text-2xl">
         <span className="text-[#00C1DE]">Explore</span> Blockchain
       </h2>

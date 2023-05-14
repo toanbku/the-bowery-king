@@ -6,7 +6,7 @@ export const formatNumber = (number: number) => {
 
 export const getDisplayGas = (number: number, baseNumber: number = 18) => {
   if (!number) return 0;
-  return Number(number / Math.pow(10, baseNumber));
+  return Number(number / Math.pow(10, baseNumber)).toFixed(baseNumber);
 };
 
 export const getDisplayGwei = (number: number, fixedNumber: number = 9) => {
